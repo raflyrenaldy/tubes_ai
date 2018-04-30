@@ -9,6 +9,10 @@
   <link rel="shortcut icon" href="#" type="image/png">
 
   <title>AdminX</title>
+  <!--dynamic table-->
+  <link href="js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+  <link href="js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+  <link rel="stylesheet" href="js/data-tables/DT_bootstrap.css" />
 
   <!--icheck-->
   <link href="js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
@@ -73,7 +77,7 @@
             </div>
 
             <!--sidebar nav start-->
-           <ul class="nav nav-pills nav-stacked custom-nav">
+            <ul class="nav nav-pills nav-stacked custom-nav">
                 <li class="active"><a href="index.php"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
                 <li ><a href="data2.php"><i class="fa fa-laptop"></i> <span>Layouts</span></a>
                    
@@ -81,7 +85,7 @@
                 <li><a href="data3.php"><i class="fa fa-book"></i> <span>UI Elements</span></a>
                    
                 </li>
-                <li><a href="data4.php"><i class="fa fa-book"></i> <span>UI Elements</span></a>
+                 <li><a href="data4.php"><i class="fa fa-book"></i> <span>UI Elements</span></a>
                    
                 </li>
                 <li><a href="login.html"><i class="fa fa-sign-in"></i> <span>Login Page</span></a></li>
@@ -336,9 +340,92 @@
         <!-- page heading end-->
 
         <!--body wrapper start-->
-       <div class="wrapper">
+        <div class="wrapper">
+        <section class="panel">
+            <header class="panel-heading">
+                Default Buttons
+                <span class="tools pull-right">
+                    <a class="fa fa-chevron-down" href="javascript:;"></a>
+                    <a class="fa fa-times" href="javascript:;"></a>
+                </span>
+            </header>
+            <div class="panel-body">
+                <p>Adding Collision.</p>
+                <form action="models/addCollision.php" method="post">
+                <button class="btn btn-success" type="submit" name="submit">Click Me!</button>
+                </form>
+            </div>
+        </section>
+    </div>
+      <div class="wrapper">
+        <div class="row">
+        <div class="col-sm-6">
+        <section class="panel">
+        <header class="panel-heading">
+            Dynamic Table
+            <span class="tools pull-right">
+                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                <a href="javascript:;" class="fa fa-times"></a>
+             </span>
+        </header>
+        <div class="panel-body">
+        <div class="adv-table">
+        <table  class="display table table-bordered table-striped" id="dynamic-table">
+        <thead>
+        <tr>
+                    <th>No</th>
+                    <th>Education</th>
+                    <th>Education.num</th>  
+                    <th>Race</th>
+                    <th>Sex</th>
+                    <th>Hours per week</th>
+                    <th>Native Country</th>
+                    <th>Income</th>
+        </tr>
+        </thead>
+        <tbody>
+       
+            <?php
+if (($handle = fopen("models/tes.csv", "r")) !== FALSE) {
+    $rowss=1;
+    while (($data2 = fgetcsv($handle, 150000, ",")) !== FALSE) {
+        ?>
+         <tr class="">
+            <?php
+          echo "<td>".$rowss++."</td>";
+       
+        echo "<td>".$data2[3]."</td>";
+        echo "<td>".$data2[4]."</td>";
+       
+        
+        echo "<td>".$data2[8]."</td>";
+        echo "<td>".$data2[9]."</td>";
+       
+        echo "<td>".$data2[12]."</td>";
+        echo "<td>".$data2[13]."</td>";
+        echo "<td>".$data2[14]."</td>";
+       ?>
+           </tr>
+       <?php
+    } //end while
+    fclose($handle);
+} //end if
+
+?> 
+     
+       
+        </tr>
+        </tbody>
+       
+        </table>
+        </div>
+        </div>
+        </section>
+        </div>
+     
+    
              <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                 <section class="panel">
                 <header class="panel-heading">
                     Editable Table
@@ -350,64 +437,53 @@
                 <div class="panel-body">
                 <div class="adv-table editable-table ">
                 <div class="clearfix">
-                   
+                    
                 </div>
-                 <div class="space15"></div>
+                <div class="space15"></div>
                 <table class="table table-striped table-hover table-bordered" id="editable-sample">
                 <thead>
                 <tr>
-    <th>No</th>
-    <th>Age</th>
-    <th>Workclass</th>
-    <th>Fnlwgt</th>
-     <th>Education</th>
-    <th>Education.num</th>
-    <th>Marital.status</th>
-    <th>Occupation</th>
-    <th>Relationship</th>
-    <th>Race</th>
-    <th>Sex</th>
-    <th>Capital.Gain</th>
-    <th>Capital.Loss</th>
-     <th>Hours per week</th>
-      <th>Native Country</th>
-       <th>Income</th>
+                    <th>No</th>
+                    <th>Education</th>
+                    <th>Education.num</th>  
+                    <th>Race</th>
+                    <th>Sex</th>
+                    <th>Hours per week</th>
+                    <th>Native Country</th>
+                    <th>Income</th>
                 </tr>
                 </thead>
-                <tbody>               
-                 <?php
-if (($handle = fopen("adult.csv", "r")) !== FALSE) {
-    $row=1;
-    while (($data = fgetcsv($handle, 150000, ",")) !== FALSE) {
+                <tbody>
+                
+                   <?php
+if (($open = fopen("models/tes2.csv", "r")) !== FALSE) {
+    $rows=1;
+    while (($data3 = fgetcsv($open, 150000, ",")) !== FALSE) {
         ?>
          <tr class="">
             <?php
-          echo "<td>".$row++."</td>";
-        echo "<td>".$data[0]."</td>";
-        echo "<td>".$data[1]."</td>";
-        echo "<td>".$data[2]."</td>";
-        echo "<td>".$data[3]."</td>";
-        echo "<td>".$data[4]."</td>";
-        echo "<td>".$data[5]."</td>";
-        echo "<td>".$data[6]."</td>";
-        echo "<td>".$data[7]."</td>";
-        echo "<td>".$data[8]."</td>";
-        echo "<td>".$data[9]."</td>";
-        echo "<td>".$data[10]."</td>";
-        echo "<td>".$data[11]."</td>";
-        echo "<td>".$data[12]."</td>";
-        echo "<td>".$data[13]."</td>";
-        echo "<td>".$data[14]."</td>";
-       ?>
+          echo "<td>".$rows++."</td>";
+       
+        echo "<td>".$data3[3]."</td>";
+        echo "<td>".$data3[4]."</td>";
+       
+        
+        echo "<td>".$data3[8]."</td>";
+        echo "<td>".$data3[9]."</td>";
+       
+        echo "<td>".$data3[12]."</td>";
+        echo "<td>".$data3[13]."</td>";
+     
+        ?><td></td>
+        
            </tr>
        <?php
     } //end while
-    fclose($handle);
+    fclose($open);
 } //end if
-
 ?>
-             
-               
+                
+                
                 </tbody>
                 </table>
                 </div>
@@ -416,6 +492,7 @@ if (($handle = fopen("adult.csv", "r")) !== FALSE) {
                 </div>
                 </div>
         </div>
+      </div>    
         <!--body wrapper end-->
 
         <!--footer section start-->
@@ -475,6 +552,10 @@ if (($handle = fopen("adult.csv", "r")) !== FALSE) {
 <script type="text/javascript" src="js/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
 
+<script type="text/javascript" language="javascript" src="js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
+<!--dynamic table initialization -->
+<script src="js/dynamic_table_init.js"></script>
 
 
 <!--script for editable table-->

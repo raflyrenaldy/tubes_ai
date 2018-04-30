@@ -336,7 +336,7 @@
         <!-- page heading end-->
 
         <!--body wrapper start-->
-       <div class="wrapper">
+     <div class="wrapper">
              <div class="row">
                 <div class="col-sm-12">
                 <section class="panel">
@@ -350,13 +350,30 @@
                 <div class="panel-body">
                 <div class="adv-table editable-table ">
                 <div class="clearfix">
-                   
+                    <form action="models/add.php" method="post">
+                           <div class="col-lg-2 pull-right">
+                            <input class="form-control input-sm m-bot15" type="text" placeholder="To" name="to">   
+                    
                 </div>
-                 <div class="space15"></div>
+                   
+                           <div class="col-lg-2 pull-right">
+                            <input class="form-control input-sm m-bot15" type="text" placeholder="From" name="from">   
+                 
+             </div>
+                        <button class="btn btn-primary pull-right" type="submit" name="submit" value="submit">
+                            Add New <i class="fa fa-plus"></i>
+                        </button>
+                    </form>
+
+            
+                    </div>
+                   
+                
+                <div class="space15"></div>
                 <table class="table table-striped table-hover table-bordered" id="editable-sample">
                 <thead>
                 <tr>
-    <th>No</th>
+                   <th>No</th>
     <th>Age</th>
     <th>Workclass</th>
     <th>Fnlwgt</th>
@@ -376,28 +393,28 @@
                 </thead>
                 <tbody>               
                  <?php
-if (($handle = fopen("adult.csv", "r")) !== FALSE) {
+if (($handle = fopen("models/tes.csv", "r")) !== FALSE) {
     $row=1;
-    while (($data = fgetcsv($handle, 150000, ",")) !== FALSE) {
+    while (($data2 = fgetcsv($handle, 150000, ",")) !== FALSE) {
         ?>
          <tr class="">
             <?php
           echo "<td>".$row++."</td>";
-        echo "<td>".$data[0]."</td>";
-        echo "<td>".$data[1]."</td>";
-        echo "<td>".$data[2]."</td>";
-        echo "<td>".$data[3]."</td>";
-        echo "<td>".$data[4]."</td>";
-        echo "<td>".$data[5]."</td>";
-        echo "<td>".$data[6]."</td>";
-        echo "<td>".$data[7]."</td>";
-        echo "<td>".$data[8]."</td>";
-        echo "<td>".$data[9]."</td>";
-        echo "<td>".$data[10]."</td>";
-        echo "<td>".$data[11]."</td>";
-        echo "<td>".$data[12]."</td>";
-        echo "<td>".$data[13]."</td>";
-        echo "<td>".$data[14]."</td>";
+        echo "<td>".$data2[0]."</td>";
+        echo "<td>".$data2[1]."</td>";
+        echo "<td>".$data2[2]."</td>";
+        echo "<td>".$data2[3]."</td>";
+        echo "<td>".$data2[4]."</td>";
+        echo "<td>".$data2[5]."</td>";
+        echo "<td>".$data2[6]."</td>";
+        echo "<td>".$data2[7]."</td>";
+        echo "<td>".$data2[8]."</td>";
+        echo "<td>".$data2[9]."</td>";
+        echo "<td>".$data2[10]."</td>";
+        echo "<td>".$data2[11]."</td>";
+        echo "<td>".$data2[12]."</td>";
+        echo "<td>".$data2[13]."</td>";
+        echo "<td>".$data2[14]."</td>";
        ?>
            </tr>
        <?php
@@ -405,9 +422,7 @@ if (($handle = fopen("adult.csv", "r")) !== FALSE) {
     fclose($handle);
 } //end if
 
-?>
-             
-               
+?>    
                 </tbody>
                 </table>
                 </div>
